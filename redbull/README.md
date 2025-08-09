@@ -28,3 +28,4 @@ docker build . -t redbull-app
 
 # To run the Docker container:
 docker run -p 3000:3000 redbull-app
+

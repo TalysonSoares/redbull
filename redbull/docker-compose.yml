@@ -1,25 +1,22 @@
-# docker-compose.yml (coloque na raiz do projeto)
-version: '3.8'
+# docker-compose.yml (versão final para a raiz do projeto)
 
 services:
   web:
-    # Constrói a imagem a partir do Dockerfile que está na pasta 'redbull'
+    # 1. Diz ao Docker para encontrar o Dockerfile DENTRO da pasta ./redbull
     build: ./redbull
 
-    # Comando para iniciar o servidor Rails, aceitando conexões de fora do contêiner
+    # 2. Comando que será executado DENTRO do contêiner.
+    #    Como o WORKDIR no Dockerfile é /rails, o comando "bin/rails" vai funcionar.
     command: bin/rails server -b 0.0.0.0
 
-    # Mapeia a porta 3000 do contêiner para a porta 3000 da sua máquina
+    # 3. Mapeia a porta
     ports:
       - "3000:3000"
 
-    # Mapeia a pasta do seu código para dentro do contêiner.
-    # Isso permite que alterações no código reflitam instantaneamente, sem precisar reconstruir a imagem.
+    # 4. Monta a pasta do código Rails (./redbull) para dentro do contêiner em /rails
     volumes:
-      - ./redbull:/rails
-      # Usa um volume nomeado para manter as gems baixadas (cache), acelerando futuras inicializações.
+      - .:/rails
       - bundle_cache:/usr/local/bundle
 
-# Define um volume reutilizável para o cache das gems
 volumes:
   bundle_cache:

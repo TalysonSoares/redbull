@@ -1,19 +1,12 @@
-# docker-compose.yml (versão final para a raiz do projeto)
-
 services:
   web:
-    # 1. Diz ao Docker para encontrar o Dockerfile DENTRO da pasta ./redbull
     build: ./redbull
 
-    # 2. Comando que será executado DENTRO do contêiner.
-    #    Como o WORKDIR no Dockerfile é /rails, o comando "bin/rails" vai funcionar.
-    command: bin/rails server -b 0.0.0.0
+    command: bash -c "rm -f /rails/tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
 
-    # 3. Mapeia a porta
     ports:
       - "3000:3000"
 
-    # 4. Monta a pasta do código Rails (./redbull) para dentro do contêiner em /rails
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle

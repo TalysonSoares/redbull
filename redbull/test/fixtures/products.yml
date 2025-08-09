@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_type: MyString
+  storage: 1
+  expire_date: 2025-08-09 10:37:31
+
+two:
+  product_type: MyString
+  storage: 1
+  expire_date: 2025-08-09 10:37:31

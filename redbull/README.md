@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Para build and run the Docker container:
+docker build . -t redbull-app
+
+# To run the Docker container:
+docker run -p 3000:3000 redbull-app
